@@ -190,8 +190,18 @@ export default defineComponent({
   &__image {
     position: relative;
     z-index: 10;
+    height: 100%;
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .character-card {
+    position: relative;
+    z-index: 10;
     height: 300px;
-    width: 300px;
+    width: 250px;
+    margin: 20px;
+    background-color: $white;
   }
 }
 </style>

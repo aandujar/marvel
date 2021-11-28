@@ -3,10 +3,10 @@ import Icon from '@/components/Icon.vue'
 
 describe('Icon.vue', () => {
   it('return icon to render', () => {
-    const type = 'search'
+    const icon = 'search'
     const wrapper = shallowMount(Icon, {
-      props: { type }
+      props: { icon }
     })
-    expect(wrapper.html().includes('<svg-icon')).toBeTruthy();
+    expect(wrapper.html().includes('<use xlink:href="#search">')).toBeTruthy();
   })
 })

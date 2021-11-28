@@ -33,4 +33,18 @@ export default {
     cursor: pointer;
   }
 }
+
+@media (max-width: 450px) {
+  .button-carrousel {
+    height: 80px;
+    width: 80px;
+    background-color: $white;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0px 0px 11px 0px $black-shadows;
+  }
+}
 </style>

@@ -434,4 +434,44 @@ export default defineComponent({
     }
   }
 }
+
+@media (max-width: 450px) {
+  .character-comics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    width: 270px;
+    background-color: $white;
+    box-shadow: 0px 0px 35px -9px $black-shadows;
+    border-radius: 20px;
+
+    &__carousel {
+      &__icon {
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+
+      &__container {
+        &__comic {
+          &__text {
+            margin-top: 20px;
+          }
+        }
+      }
+
+      &__position {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 60x;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
 </style>

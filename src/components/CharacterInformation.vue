@@ -1,66 +1,61 @@
 <template>
   <div class="character-information">
-      <img
-        :src="getFormattedImg(character)"
-        class="character-information__img"
-      />
+    <img :src="getFormattedImg(character)" class="character-information__img" />
+    <div class="character-information__text character-information__text--bold">
+      {{ character.name }}
+    </div>
+    <div class="character-information__text">
+      {{ getDescription }}
+    </div>
+    <div class="character-information__block" v-if="showSeriesBlock">
       <div
-        class="character-information__text character-information__text--bold"
+        class="character-information__block__title"
+        @click="toogleShowSeries"
       >
-        {{ character.name }}
+        Series <Icon :icon="showSeries ? 'up' : 'down'" />
       </div>
-      <div class="character-information__text">
-        {{ getDescription }}
-      </div>
-      <div class="character-information__block" v-if="showSeriesBlock">
+      <div
+        class="character-information__block__items"
+        :class="{
+          'character-information__block__items--shown': showSeries,
+          'character-information__block__items--hided': !showSeries,
+        }"
+      >
         <div
-          class="character-information__block__title"
-          @click="toogleShowSeries"
+          v-for="serie in character.series.items"
+          :key="serie.id"
+          class="character-information__block__items__item"
         >
-          Series <Icon :icon="showSeries ? 'up' : 'down'" />
+          {{ serie.name }}
         </div>
-        <div
-          class="character-information__block__items"
-          :class="{
-            'character-information__block__items--shown': showSeries,
-            'character-information__block__items--hided': !showSeries,
-          }"
-        >
+      </div>
+    </div>
+    <div class="character-information__block" v-if="showStoriesBlock">
+      <div
+        class="character-information__block__title"
+        @click="toogleShowStories"
+      >
+        Historias <Icon :icon="showStories ? 'up' : 'down'" />
+      </div>
+      <div
+        class="character-information__block__items"
+        :class="{
+          'character-information__block__items--shown': showStories,
+          'character-information__block__items--hided': !showStories,
+        }"
+      >
+        <div v-for="story in character.stories.items" :key="story.id">
           <div
-            v-for="serie in character.series.items"
-            :key="serie.id"
+            v-for="story in character.stories.items"
+            :key="story.id"
             class="character-information__block__items__item"
           >
-            {{ serie.name }}
-          </div>
-        </div>
-      </div>
-      <div class="character-information__block" v-if="showStoriesBlock">
-        <div
-          class="character-information__block__title"
-          @click="toogleShowStories"
-        >
-          Historias <Icon :icon="showStories ? 'up' : 'down'" />
-        </div>
-        <div
-          class="character-information__block__items"
-          :class="{
-            'character-information__block__items--shown': showStories,
-            'character-information__block__items--hided': !showStories,
-          }"
-        >
-          <div v-for="story in character.stories.items" :key="story.id">
-            <div
-              v-for="story in character.stories.items"
-              :key="story.id"
-              class="character-information__block__items__item"
-            >
-              {{ story.name }}
-            </div>
+            {{ story.name }}
           </div>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -77,7 +72,6 @@ export default defineComponent({
     const showStories = ref(false);
 
     const showSeriesBlock = computed(() => {
-      console.log(props.character)
       return (
         props.character.series &&
         props.character.series.items &&
@@ -94,7 +88,8 @@ export default defineComponent({
     });
 
     const getDescription = computed(() => {
-      return props.character.description && props.character.description.length > 0
+      return props.character.description &&
+        props.character.description.length > 0
         ? props.character.description
         : "Sin descripción";
     });
@@ -188,6 +183,16 @@ export default defineComponent({
         margin-bottom: 5px;
       }
     }
+  }
+}
+
+@media (max-width: 450px) {
+  .character-information {
+    width: 270px;
+    background-color: $white;
+    box-shadow: 0px 0px 35px -9px $black-shadows;
+    border-radius: 20px;
+    min-height: 570px;
   }
 }
 </style>

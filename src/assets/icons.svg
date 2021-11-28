@@ -49,14 +49,13 @@
 </symbol>
 
 <symbol viewBox="0 0 64 64" id="search">
-  <path data-name="layer2"
-  d="M41.54 37.285L61.122 56.88a3 3 0 0 1-4.244 4.242l-19.58-19.593" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"></path>
+  <path data-name="layer2" d="M41.54 37.285L61.122 56.88a3 3 0 0 1-4.244 4.242l-19.58-19.593" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"></path>
   <circle data-name="layer1" cx="24" cy="24" r="22" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"></circle>
   <circle data-name="layer1" cx="24" cy="24" r="16" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round"></circle>
 </symbol>
 
 <symbol viewBox="0 0 64 64" id="comic">
-  <path data-name="layer2"   d="M24 51.9a8 8 0 0 1 8 8v-44a8 8 0 0 0-8-8H2v44zm8-36a8 8 0 0 1 8-8h22v44H40a8 8 0 0 0-8 8" stroke-miterlimit="10" stroke-linejoin="round"
+  <path data-name="layer2" d="M24 51.9a8 8 0 0 1 8 8v-44a8 8 0 0 0-8-8H2v44zm8-36a8 8 0 0 1 8-8h22v44H40a8 8 0 0 0-8 8" stroke-miterlimit="10" stroke-linejoin="round"
   stroke-linecap="round"></path>
   <path data-name="layer1" stroke-miterlimit="10" d="M10 17.9h14m-14 8h14m-14 8h14m-14 8h14m16-24h14m-14 8h14m-14 8h14m-14 8h14"
   stroke-linejoin="round" stroke-linecap="round"></path>

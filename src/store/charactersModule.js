@@ -7,7 +7,8 @@ export const charactersModule = ({
     characterSelected: {},
     totalElements: 0,
     loading: false,
-    comics: []
+    comics: [],
+    filters: null
   },
   mutations: {
     SET_CHARACTERS(state, characters) {
@@ -27,6 +28,9 @@ export const charactersModule = ({
     },
     SET_COMICS(state, comics) {
       state.comics = comics;
+    },
+    SET_FILTERS(state, filters) {
+      state.filters = Object.assign({}, filters);
     }
   },
   actions: {

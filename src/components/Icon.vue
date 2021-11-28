@@ -19,7 +19,6 @@ export default defineComponent({
   },
   setup(props) {
     const getStyle = computed(() => {
-      console.log(props.stroke)
       return {
         height: props.height,
         width: props.width,

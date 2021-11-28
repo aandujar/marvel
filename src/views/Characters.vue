@@ -1,6 +1,6 @@
 <template>
   <div class="characters">
-    <FilterCharacters @filter="setFilter" />
+    <FilterCharacters ref="filterCharacters" @filter="setFilter" />
     <div class="characters__content">
       <CharacterCard
         v-for="character in characters"
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, reactive, ref, inject } from "vue";
+import { defineComponent, computed, reactive, ref, inject, onBeforeUnmount, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import CharacterCard from "@/components/CharacterCard";
@@ -38,6 +38,8 @@ export default defineComponent({
 
     const pagination = ref(null);
 
+    const filterCharacters = ref(null);
+
     const filter = reactive({ name: "", results: 20 });
 
     const offset = ref(0);
@@ -48,6 +50,32 @@ export default defineComponent({
 
     const totalElements = computed(() => {
       return store.state.characters.totalElements;
+    });
+
+    onMounted(() => {
+        if (store.state.characters.filters !== null) {
+          if(store.state.characters.filters.offset !== null) {
+            pagination.value.currentPosition = store.state.characters.filters.offset;
+          }
+          if(store.state.characters.filters.name !== null) {
+            filterCharacters.value.name = store.state.characters.filters.filter.name;
+            filter.name = store.state.characters.filters.filter.name;
+          }
+          if(store.state.characters.filters.results !== null) {
+            filterCharacters.value.results = store.state.characters.filters.filter.results;
+            filter.results = store.state.characters.filters.filter.results;
+          }
+          setTimeout(() => getCharacters(),1000)
+          
+        }
+    })
+
+     onBeforeUnmount(() => {
+       const data = {
+          filter: filter,
+          offset: offset.value
+       };
+      store.commit("characters/SET_FILTERS", data);
     });
 
     function setOffset(offsetValue) {
@@ -84,6 +112,7 @@ export default defineComponent({
       totalElements,
       filter,
       pagination,
+      filterCharacters,
       setFilter,
       setOffset,
       getCharacters,

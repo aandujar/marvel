@@ -72,7 +72,7 @@ export default defineComponent({
       emit("filter", data);
     }
 
-    return { showFilter, toggleMenu, setName, setResults };
+    return { showFilter, name, results, toggleMenu, setName, setResults };
   },
 });
 </script>
