@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: 'https://aandujar.github.io/marvel/',
+    publicPath: '/marvel/',
     css: {
         loaderOptions: {
             sass: {
