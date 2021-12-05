@@ -1,7 +1,7 @@
 <template>
   <div class="character-comics">
-    <h1>Comics</h1>
-    <div class="character-comics__carousel">
+    <h1>Cómics</h1>
+    <div class="character-comics__carousel" v-if="areComics">
       <div class="character-comics__carousel__icon">
         <transition name="fade">
           <ButtonCarrousel
@@ -23,7 +23,7 @@
           >
             <img
               class="character-comics__carousel__container__comic__img"
-              :src="getFormattedImg(comic)"
+              :src="$functions.getImg(comic)"
             />
             <div
               class="
@@ -63,7 +63,7 @@
         </transition>
       </div>
     </div>
-    <div class="character-comics__position">
+    <div class="character-comics__position" v-if="areComics">
       <div
         v-for="(comic, index) in comics"
         :key="index"
@@ -75,29 +75,31 @@
         }"
       ></div>
     </div>
+    <div v-if="!areComics" class="character-comics__empty">
+      <Icon icon="no-data" height="300px" width="300px" />
+      El personaje no tiene cómics
+    </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { ref, computed } from "vue";
 import ButtonCarrousel from "@/components/ButtonCarrousel.vue";
 import Icon from "@/components/Icon.vue";
 
-export default defineComponent({
+export default {
   name: "CharacterComics",
   components: { ButtonCarrousel, Icon },
   props: { comics: { type: Array, required: true } },
-  setup() {
+  setup(props) {
     const position = ref(1);
+
+    const areComics = computed(() => {
+      return props.comics.length > 0;
+    });
 
     function isCurrentComic(index) {
       return position.value !== null && Number(index) + 1 === position.value;
-    }
-
-    function getFormattedImg(item) {
-      return item.thumbnail
-        ? `${item.thumbnail.path}.${item.thumbnail.extension}`
-        : "";
     }
 
     function getFormattedDate(date) {
@@ -182,14 +184,14 @@ export default defineComponent({
 
     return {
       position,
+      areComics,
       isCurrentComic,
-      getFormattedImg,
       getFormattedDate,
       showPrevious,
       showNext,
     };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
@@ -247,6 +249,8 @@ export default defineComponent({
           flex-direction: row;
           align-items: center;
           font-size: 1.2em;
+          margin-top: 5px;
+          margin-bottom: 5px;
 
           &--bold {
             font-weight: bold;
@@ -432,6 +436,41 @@ export default defineComponent({
       margin-top: 50px;
       width: 90%;
     }
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 720px) {
+  .character-comics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    width: 600px;
+    background-color: $white;
+    box-shadow: 0px 0px 35px -9px $black-shadows;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .character-comics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    width: 400px;
+    background-color: $white;
+    box-shadow: 0px 0px 35px -9px $black-shadows;
+    border-radius: 20px;
   }
 }
 

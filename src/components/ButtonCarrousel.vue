@@ -6,14 +6,17 @@
 
 <script>
 import Icon from "@/components/Icon.vue";
+
 export default {
   name: "ButtonCarrousel",
   components: { Icon },
   props: { icon: { type: String, required: true } },
-  methods: {
-    clicked() {
-      this.$emit("clicked");
-    },
+  setup(props, { emit }) {
+    function clicked() {
+      emit("clicked");
+    }
+
+    return { clicked }
   },
 };
 </script>

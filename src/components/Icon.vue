@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import { defineComponent, computed } from "vue";
+import { computed } from "vue";
 
-export default defineComponent({
+export default {
   name: "Toolbar",
   props: {
     icon: { type: String, required: true },
@@ -31,7 +31,7 @@ export default defineComponent({
 
     return { getStyle };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

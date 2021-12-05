@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref, inject } from "vue";
+import { onMounted, ref, inject } from "vue";
 
-export default defineComponent({
+export default {
   name: "Notification",
   setup() {
     const message = ref(null);
@@ -42,7 +42,7 @@ export default defineComponent({
 
     return { message };
   },
-});
+};
 </script>
 
 

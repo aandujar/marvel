@@ -16,9 +16,8 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
 
-export default defineComponent({
+export default {
   name: "Select",
   setup(props, { emit }) {
     function changed() {
@@ -27,7 +26,7 @@ export default defineComponent({
 
     return { changed };
   },
-});
+};
 </script>
 
 

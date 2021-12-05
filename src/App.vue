@@ -32,7 +32,9 @@ export default {
     const route = useRouter();
 
     const showLoader = computed(() => {
-      return store.state.characters.loading;
+      const charactersLoading = store.state.characters.loading;
+      const seriesLoading = store.state.series.loading;
+      return charactersLoading || seriesLoading;
     });
 
     const isInContent = computed(() => {

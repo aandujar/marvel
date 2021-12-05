@@ -2,8 +2,12 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import mitt from 'mitt';        
+import mitt from 'mitt';  
+import * as functions from './globalFunctions/functions.js';      
 
-const emitter = mitt();    
+const emitter = mitt();
 
-createApp(App).use(store).use(router).provide('emitter', emitter).mount('#app')
+const app = createApp(App);
+
+app.config.globalProperties.$functions = functions;
+app.use(store).use(router).provide('emitter', emitter).mount('#app')

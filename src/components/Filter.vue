@@ -1,38 +1,39 @@
 <template>
   <div
-    class="filter-characters"
+    class="filter"
     :class="{
-      'filter-characters--shown': showFilter,
-      'filter-characters--hided': !showFilter,
+      'filter--shown': showFilter,
+      'filter--hided': !showFilter,
     }"
   >
-    <div class="filter-characters__button">
+    <div class="filter__button">
       <Icon
-        class="filter-characters__button__icon"
+        class="filter__button__icon"
         v-show="showFilter"
         icon="up"
         v-on:click="toggleMenu"
       />
       <Icon
-        class="filter-characters__button__icon"
+        class="filter__button__icon"
         v-show="!showFilter"
         icon="down"
         v-on:click="toggleMenu"
       />
     </div>
     <div
-      class="filter-characters__content"
+      class="filter__content"
       :class="{
-        'filter-characters__content--shown': showFilter,
-        'filter-characters__content--hided': !showFilter,
+        'filter__content--shown': showFilter,
+        'filter__content--hided': !showFilter,
       }"
     >
       <Textfield
-        class="filter-characters__content__textfield"
+        class="filter__content__textfield"
+        :type="type"
         @name="setName"
       />
       <Select
-        class="filter-characters__content__select"
+        class="filter__content__select"
         @changed="setResults"
       />
     </div>
@@ -40,14 +41,15 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { ref } from "vue";
 import Select from "@/components/Select.vue";
 import Textfield from "@/components/Textfield.vue";
 import Icon from "@/components/Icon.vue";
 
-export default defineComponent({
-  name: "FilterCharacters",
+export default {
+  name: "Filter",
   components: { Select, Textfield, Icon },
+  props: { type: { type: String, required: true } },
   setup(props, { emit }) {
     const showFilter = ref(false);
     const name = ref("");
@@ -74,11 +76,11 @@ export default defineComponent({
 
     return { showFilter, name, results, toggleMenu, setName, setResults };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
-.filter-characters {
+.filter {
   width: 87%;
   background-color: white;
   display: flex;
@@ -172,7 +174,7 @@ export default defineComponent({
 }
 
 @media (max-width: 950px) {
-  .filter-characters {
+  .filter {
     width: 70%;
     background-color: white;
     display: flex;
@@ -182,7 +184,7 @@ export default defineComponent({
 }
 
 @media (max-width: 400px) {
-  .filter-characters {
+  .filter {
     width: 60%;
     background-color: white;
     display: flex;

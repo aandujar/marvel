@@ -1,6 +1,6 @@
 <template>
   <div class="character-information">
-    <img :src="getFormattedImg(character)" class="character-information__img" />
+    <img :src="$functions.getImg(character)" class="character-information__img" />
     <div class="character-information__text character-information__text--bold">
       {{ character.name }}
     </div>
@@ -59,10 +59,10 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref } from "vue";
+import { computed, ref } from "vue";
 import Icon from "@/components/Icon.vue";
 
-export default defineComponent({
+export default {
   name: "CharacterInformation",
   props: { character: { type: Object, required: true } },
   components: { Icon },
@@ -102,12 +102,6 @@ export default defineComponent({
       showSeries.value = !showSeries.value;
     }
 
-    function getFormattedImg(item) {
-      return item.thumbnail
-        ? `${item.thumbnail.path}.${item.thumbnail.extension}`
-        : "";
-    }
-
     return {
       showSeries,
       showStories,
@@ -116,10 +110,9 @@ export default defineComponent({
       getDescription,
       toogleShowStories,
       toogleShowSeries,
-      getFormattedImg,
     };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import { defineComponent, computed } from "vue";
+import { computed } from "vue";
 
-export default defineComponent({
+export default {
   name: "Section",
   props: { section: { type: String, required: true } },
   setup(props) {
@@ -35,7 +35,7 @@ export default defineComponent({
 
     return { getSection }
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

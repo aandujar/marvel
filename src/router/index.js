@@ -15,7 +15,17 @@ const routes = [
     path: '/characters/:id',
     name: 'Character',
     component: () => import("@/views/Character.vue")
-  }
+  },
+  {
+    path: '/series',
+    name: 'Series',
+    component: () => import("@/views/Series.vue")
+  },
+  {
+    path: '/series/:id',
+    name: 'Serie',
+    component: () => import("@/views/Serie.vue")
+  },
 ]
 
 const router = createRouter({

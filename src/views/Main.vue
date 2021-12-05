@@ -27,7 +27,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
 
-    const sections = ["characters"/*, "comics", "series"*/];
+    const sections = ["characters"/*, "comics"*/, "series"];
 
     function goTo(section) {
       router.push(`/${section}`);

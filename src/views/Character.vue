@@ -89,7 +89,7 @@ export default defineComponent({
   text-align: center;
   height: 100%;
   width: 100%;
-  padding: 20px;
+  padding: 40px;
   padding-bottom: 80px;
   overflow-y: auto;
 

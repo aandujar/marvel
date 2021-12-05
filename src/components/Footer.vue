@@ -5,12 +5,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  setup() {},
-};
-</script>
-
 <style lang="scss" scoped>
 .footer {
   height: 80px;

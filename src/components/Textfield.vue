@@ -7,7 +7,7 @@
           :id="getLabelId"
           for="textfield"
           class="textfield__label__text"
-          >Personaje</label
+          >{{ getType }}</label
         >
       </transition>
     </div>
@@ -16,7 +16,7 @@
         class="textfield__input__field"
         type="text"
         id="textfield"
-        placeholder="Personaje"
+        :placeholder="getType"
         v-model="value"
         v-on:blur="removeFocusLabel"
         v-on:focus="focusLabel"
@@ -28,12 +28,13 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref } from "vue";
+import { computed, ref } from "vue";
 import Icon from "@/components/Icon.vue";
 
-export default defineComponent({
+export default {
   name: "Textfield",
   components: { Icon },
+  props: { type: { type: String, required: true } },
   setup(props, { emit }) {
     const value = ref("");
 
@@ -43,6 +44,10 @@ export default defineComponent({
 
     const showLabel = computed(() => {
       return value.value.length > 0;
+    });
+
+    const getType = computed(() => {
+      return props.type === 'characters' ? 'Personaje' : 'Serie';
     });
 
     function focusLabel() {
@@ -71,12 +76,13 @@ export default defineComponent({
       value,
       getLabelId,
       showLabel,
+      getType,
       focusLabel,
       removeFocusLabel,
       sendValue,
     };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

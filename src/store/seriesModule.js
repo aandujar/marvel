@@ -1,10 +1,12 @@
-import charactersService from "@/service/characters.js";
+import seriesService from "@/service/series.js";
 
-export const charactersModule = ({
-    namespaced: true,
+export const seriesModule = ({
+  namespaced: true,
   state: {
     listData: [],
-    characterSelected: {},
+    serieSelected: {},
+    serieCharacters: [],
+    serieCreators: [],
     totalElements: 0,
     loading: false,
     comics: [],
@@ -14,8 +16,14 @@ export const charactersModule = ({
     SET_LIST_DATA(state, listData) {
       state.listData = listData;
     },
-    SET_CHARACTER_SELECTED(state, character) {
-      state.characterSelected = character;
+    SET_SERIE_SELECTED(state, serieSelected) {
+      state.serieSelected = serieSelected;
+    },
+    SET_SERIE_CHARACTERS(state, characters) {
+      state.serieCharacters = characters;
+    },
+    SET_SERIE_CREATORS(state, creators) {
+      state.serieCreators = creators;
     },
     SET_CURRENT_POSITION(state, currentPosition) {
       state.currentPosition = currentPosition;
@@ -26,9 +34,6 @@ export const charactersModule = ({
     SET_LOADING(state, loading) {
       state.loading = loading;
     },
-    SET_COMICS(state, comics) {
-      state.comics = comics;
-    },
     SET_FILTERS(state, filters) {
       state.filters = Object.assign({}, filters);
     }
@@ -37,7 +42,7 @@ export const charactersModule = ({
     getListData({ commit }, params) {
       commit('SET_LOADING', true);
       return new Promise((resolve, reject) => {
-        charactersService.getCharacters(params)
+        seriesService.getSeries(params)
         .then((response) => {
           commit('SET_LIST_DATA', response.status === 200 ? response.data.data.results : []);
           commit('SET_TOTAL_ELEMENTS', response.status === 200 ? response.data.data.total : []);
@@ -50,32 +55,38 @@ export const charactersModule = ({
         })
       })
     },
-    getCharacterById({ commit }, characterId) {
-      commit('SET_LOADING', true);
+   getSerieById({ commit }, serieId) {
       return new Promise((resolve, reject) => {
-        charactersService.getCharacterById(characterId)
+        seriesService.getSerieById(serieId)
         .then((response) => {
-          commit('SET_CHARACTER_SELECTED', response.status === 200 ? response.data.data.results[0] : {});
-          commit('SET_LOADING', false)
+          commit('SET_SERIE_SELECTED', response.status === 200 ? response.data.data.results[0] : {});
           resolve(response)
         })
         .catch((error) => {
-          commit('SET_LOADING', false)
           reject(error)
         })
       })
     },
-    getSpecialEndpoint({ commit }, endpoint) {
-      commit('SET_LOADING', true);
+    getSerieCharactersById({ commit }, serieId) {
       return new Promise((resolve, reject) => {
-        charactersService.getSpecialEndpoint(endpoint)
+        seriesService.getSerieCharactersById(serieId)
         .then((response) => {
-          commit('SET_COMICS', response.status === 200 ? response.data.data.results : []);
-          commit('SET_LOADING', false)
+          commit('SET_SERIE_CHARACTERS', response.status === 200 ? response.data.data.results : []);
           resolve(response)
         })
         .catch((error) => {
-          commit('SET_LOADING', false)
+          reject(error)
+        })
+      })
+    },
+    getSerieCreatorsById({ commit }, serieId) {
+      return new Promise((resolve, reject) => {
+        seriesService.getSerieCreatorsById(serieId)
+        .then((response) => {
+          commit('SET_SERIE_CREATORS', response.status === 200 ? response.data.data.results : []);
+          resolve(response)
+        })
+        .catch((error) => {
           reject(error)
         })
       })

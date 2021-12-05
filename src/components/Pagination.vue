@@ -22,9 +22,11 @@
         @click="previousPage"
       >
         <Icon
-          class="pagination__pages__item__icon"
+          class="
+            pagination__pages__item__icon pagination__pages__item__icon--left
+          "
           icon="left"
-          :stroke="getCurrentPage === 1 ? '#9EA890' : 'black'"
+          :stroke="getCurrentPage === 1 ? '#E1DBDA' : 'white'"
         />
       </div>
       <!-- current -->
@@ -41,9 +43,11 @@
         @click="nextPage"
       >
         <Icon
-          class="pagination__pages__item__icon"
+          class="
+            pagination__pages__item__icon pagination__pages__item__icon--right
+          "
           icon="right"
-          :stroke="isLastPage ? '#9EA890' : 'black'"
+          :stroke="isLastPage ? '#E1DBDA' : 'white'"
         />
       </div>
       <!-- last -->
@@ -66,10 +70,10 @@
 </template>
 
 <script>
-import { defineComponent, onBeforeMount, ref, computed } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 import Icon from "@/components/Icon.vue";
 
-export default defineComponent({
+export default {
   name: "Pagination",
   components: { Icon },
   props: {
@@ -137,6 +141,7 @@ export default defineComponent({
     }
 
     return {
+      currentPosition,
       getCurrentPage,
       isLastPage,
       getLastPage,
@@ -147,7 +152,7 @@ export default defineComponent({
       lastPage,
     };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
@@ -166,7 +171,6 @@ export default defineComponent({
     text-align: center;
 
     &__item {
-      background-color: white;
       height: 40px;
       width: 40px;
       margin: 10px;
@@ -176,18 +180,28 @@ export default defineComponent({
       align-items: center;
       text-align: center;
       font-size: 1em;
+      box-shadow: 5px 5px 18px -1px rgba(0, 0, 0, 77%);
 
       &__icon {
-       margin-right: 3px;
+        &--left {
+          margin-right: 3px;
+        }
+
+        &--right {
+          margin-left: 3px;
+        }
       }
 
       &--enabled {
         font-weight: bold;
         cursor: pointer;
+        background-color: $red-background;
+        color: $white;
       }
 
       &--disabled {
         color: $grey;
+        background-color: $white;
       }
     }
   }
