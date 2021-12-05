@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: "/marvel-prueba/",
+    publicPath: "/marvel/",
     outputDir: "docs",
     css: {
         loaderOptions: {
