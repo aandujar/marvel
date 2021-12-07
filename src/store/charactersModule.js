@@ -1,4 +1,5 @@
 import charactersService from "@/service/characters.js";
+import { isNotEmpty, getFirstElementOfArray } from "@/globalFunctions/functions.js";
 
 export const charactersModule = ({
     namespaced: true,
@@ -39,8 +40,8 @@ export const charactersModule = ({
       return new Promise((resolve, reject) => {
         charactersService.getCharacters(params)
         .then((response) => {
-          commit('SET_LIST_DATA', response.status === 200 ? response.data.data.results : []);
-          commit('SET_TOTAL_ELEMENTS', response.status === 200 ? response.data.data.total : []);
+          commit('SET_LIST_DATA', response.status === 200 && isNotEmpty(response.data) ? response.data.data.results : []);
+          commit('SET_TOTAL_ELEMENTS', response.status === 200 && isNotEmpty(response.data) ? response.data.data.total : []);
           commit('SET_LOADING', false)
           resolve(response)
         })
@@ -55,7 +56,7 @@ export const charactersModule = ({
       return new Promise((resolve, reject) => {
         charactersService.getCharacterById(characterId)
         .then((response) => {
-          commit('SET_CHARACTER_SELECTED', response.status === 200 ? response.data.data.results[0] : {});
+          commit('SET_CHARACTER_SELECTED', response.status === 200 && isNotEmpty(response.data) ? getFirstElementOfArray(response.data.data.results) : {});
           commit('SET_LOADING', false)
           resolve(response)
         })
@@ -70,7 +71,7 @@ export const charactersModule = ({
       return new Promise((resolve, reject) => {
         charactersService.getSpecialEndpoint(endpoint)
         .then((response) => {
-          commit('SET_COMICS', response.status === 200 ? response.data.data.results : []);
+          commit('SET_COMICS', response.status === 200 && isNotEmpty(response.data) ? response.data.data.results : []);
           commit('SET_LOADING', false)
           resolve(response)
         })

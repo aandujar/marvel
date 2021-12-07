@@ -5,11 +5,9 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon.vue";
 
 export default {
   name: "ButtonCarrousel",
-  components: { Icon },
   props: { icon: { type: String, required: true } },
   setup(props, { emit }) {
     function clicked() {

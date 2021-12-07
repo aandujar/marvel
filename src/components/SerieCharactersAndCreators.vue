@@ -75,12 +75,10 @@
 </template>
 
 <script>
-import Icon from "@/components/Icon.vue";
 import { ref, computed } from "vue";
 
 export default {
   name: "SerieCharactersAndCreators",
-  components: { Icon },
   props: { data: { type: Object, required: true } },
   setup(props) {
     const showCharacters = ref(false);

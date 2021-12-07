@@ -4,8 +4,13 @@
     <div class="list-view__content">
       <slot></slot>
     </div>
+    <div class="list-view__no-data" v-show="showNoData">
+      <Icon icon="no-data" height="300px" width="300px" />
+      No hay datos para mostrar
+    </div>
     <Pagination
       ref="pagination"
+      v-show="notEmptyData"
       :totalElements="totalElements"
       :results="Number(filter.results)"
       @page="setOffset"
@@ -45,6 +50,14 @@ export default {
 
     const totalElements = computed(() => {
       return store.state[props.store].totalElements;
+    });
+
+    const notEmptyData = computed(() => {
+      return store.state[props.store].listData.length > 0;
+    });
+
+    const showNoData = computed(() => {
+      return !notEmptyData.value && !store.state[props.store].loading;
     });
 
     onBeforeUnmount(() => {
@@ -118,6 +131,8 @@ export default {
       filter,
       pagination,
       filterComponent,
+      notEmptyData,
+      showNoData,
       setFilter,
       setOffset,
       getData,
@@ -137,6 +152,15 @@ export default {
   padding-top: 20px;
   padding-bottom: 80px;
   padding-left: 35px;
+
+  &__no-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.4em;
+  }
 
   &__content {
     display: flex;

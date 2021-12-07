@@ -6,19 +6,14 @@
 </template>
 
 <script>
-import {
-  defineComponent,
-  onBeforeMount,
-  onBeforeUnmount,
-  inject,
-  computed,
-} from "vue";
+import { onBeforeMount, onBeforeUnmount, inject, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import CharacterInformation from "@/components/CharacterInformation.vue";
 import CharacterComics from "@/components/CharacterComics.vue";
+import { isNotEmpty } from "@/globalFunctions/functions.js";
 
-export default defineComponent({
+export default {
   name: "Character",
   components: { CharacterInformation, CharacterComics },
   setup() {
@@ -41,7 +36,11 @@ export default defineComponent({
           "characters/getCharacterById",
           route.currentRoute.value.params.id
         )
-        .then(() => getComics())
+        .then(() => {
+          if (isNotEmpty(character.value)) {
+            getComics();
+          }
+        })
         .catch((err) => {
           const message =
             err.response && err.response.data && err.response.data.message
@@ -76,7 +75,7 @@ export default defineComponent({
       comics,
     };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

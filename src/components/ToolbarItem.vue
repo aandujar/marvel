@@ -25,11 +25,9 @@
 
 <script>
 import { ref, computed } from "vue";
-import Icon from "@/components/Icon.vue";
 
 export default {
   name: "ToolbarItem",
-  components: { Icon },
   props: {
     type: { type: String, required: true },
     showToolbar: { type: Boolean, required: true },

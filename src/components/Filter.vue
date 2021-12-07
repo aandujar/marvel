@@ -44,11 +44,10 @@
 import { ref } from "vue";
 import Select from "@/components/Select.vue";
 import Textfield from "@/components/Textfield.vue";
-import Icon from "@/components/Icon.vue";
 
 export default {
   name: "Filter",
-  components: { Select, Textfield, Icon },
+  components: { Select, Textfield },
   props: { type: { type: String, required: true } },
   setup(props, { emit }) {
     const showFilter = ref(false);

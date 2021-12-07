@@ -85,11 +85,10 @@
 <script>
 import { ref, computed } from "vue";
 import ButtonCarrousel from "@/components/ButtonCarrousel.vue";
-import Icon from "@/components/Icon.vue";
 
 export default {
   name: "CharacterComics",
-  components: { ButtonCarrousel, Icon },
+  components: { ButtonCarrousel },
   props: { comics: { type: Array, required: true } },
   setup(props) {
     const position = ref(1);

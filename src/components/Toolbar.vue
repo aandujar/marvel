@@ -34,13 +34,12 @@
 
 <script>
 import { ref } from "vue";
-import Icon from "@/components/Icon.vue";
 import ToolbarItem from "@/components/ToolbarItem.vue";
 import { useRouter } from "vue-router";
 
 export default {
   name: "Toolbar",
-  components: { Icon, ToolbarItem },
+  components: { ToolbarItem },
   setup() {
     const router = useRouter();
 
@@ -93,7 +92,7 @@ export default {
 
   &__icon {
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: 10px;
   }
 
   &__content {

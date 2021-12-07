@@ -29,11 +29,9 @@
 
 <script>
 import { computed, ref } from "vue";
-import Icon from "@/components/Icon.vue";
 
 export default {
   name: "Textfield",
-  components: { Icon },
   props: { type: { type: String, required: true } },
   setup(props, { emit }) {
     const value = ref("");

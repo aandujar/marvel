@@ -5,7 +5,13 @@
       alt="serieImg"
       class="serie-information__img"
     />
-    <div class="serie-information__content">
+    <div
+      class="serie-information__no-data"
+      v-if="!$functions.isNotEmpty(serie)"
+    >
+      No se pueden visualizar los datos
+    </div>
+    <div class="serie-information__content" v-if="$functions.isNotEmpty(serie)">
       <div class="serie-information__content__title">{{ getTitle }}</div>
       <div class="serie-information__content__subtitle">
         {{ getPeriodEmission }}
@@ -66,6 +72,13 @@ export default {
     border-top-right-radius: 20px;
   }
 
+  &__no-data {
+    font-size: 1.2em;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -118,7 +131,7 @@ export default {
   }
 }
 
-  @media (max-width: 330px) {
+@media (max-width: 330px) {
   .serie-information {
     min-height: 500px;
     width: 210px;
@@ -131,7 +144,7 @@ export default {
   }
 }
 
-  @media (max-width: 300px) {
+@media (max-width: 300px) {
   .serie-information {
     min-height: 500px;
     width: 180px;

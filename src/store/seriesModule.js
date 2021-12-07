@@ -1,4 +1,5 @@
 import seriesService from "@/service/series.js";
+import { isNotEmpty, getFirstElementOfArray } from "@/globalFunctions/functions.js";
 
 export const seriesModule = ({
   namespaced: true,
@@ -44,8 +45,8 @@ export const seriesModule = ({
       return new Promise((resolve, reject) => {
         seriesService.getSeries(params)
         .then((response) => {
-          commit('SET_LIST_DATA', response.status === 200 ? response.data.data.results : []);
-          commit('SET_TOTAL_ELEMENTS', response.status === 200 ? response.data.data.total : []);
+          commit('SET_LIST_DATA', response.status === 200 && isNotEmpty(response.data) ? response.data.data.results : []);
+          commit('SET_TOTAL_ELEMENTS', response.status === 200 && isNotEmpty(response.data) ? response.data.data.total : []);
           commit('SET_LOADING', false)
           resolve(response)
         })
@@ -59,7 +60,7 @@ export const seriesModule = ({
       return new Promise((resolve, reject) => {
         seriesService.getSerieById(serieId)
         .then((response) => {
-          commit('SET_SERIE_SELECTED', response.status === 200 ? response.data.data.results[0] : {});
+          commit('SET_SERIE_SELECTED', response.status === 200 && isNotEmpty(response.data) ? getFirstElementOfArray(response.data.data.results) : {});
           resolve(response)
         })
         .catch((error) => {
@@ -71,7 +72,7 @@ export const seriesModule = ({
       return new Promise((resolve, reject) => {
         seriesService.getSerieCharactersById(serieId)
         .then((response) => {
-          commit('SET_SERIE_CHARACTERS', response.status === 200 ? response.data.data.results : []);
+          commit('SET_SERIE_CHARACTERS', response.status === 200 && isNotEmpty(response.data) ? response.data.data.results : []);
           resolve(response)
         })
         .catch((error) => {
@@ -83,7 +84,7 @@ export const seriesModule = ({
       return new Promise((resolve, reject) => {
         seriesService.getSerieCreatorsById(serieId)
         .then((response) => {
-          commit('SET_SERIE_CREATORS', response.status === 200 ? response.data.data.results : []);
+          commit('SET_SERIE_CREATORS', response.status === 200 && isNotEmpty(response.data) ? response.data.data.results : []);
           resolve(response)
         })
         .catch((error) => {

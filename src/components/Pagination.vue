@@ -71,11 +71,9 @@
 
 <script>
 import { onBeforeMount, ref, computed } from "vue";
-import Icon from "@/components/Icon.vue";
 
 export default {
   name: "Pagination",
-  components: { Icon },
   props: {
     totalElements: { type: Number, required: true },
     results: { type: Number, required: true },
