@@ -15,11 +15,10 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import Section from "@/components/Section.vue";
 
-export default defineComponent({
+export default {
   name: "Main",
   components: {
     Section,
@@ -35,7 +34,7 @@ export default defineComponent({
 
     return { sections, goTo };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
@@ -46,8 +45,8 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100vh;
+  width: 100vw;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

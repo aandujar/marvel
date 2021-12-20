@@ -208,13 +208,20 @@ export default {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
   .character-information {
     width: 270px;
     background-color: $white;
     box-shadow: 0px 0px 35px -9px $black-shadows;
     border-radius: 20px;
-    min-height: 570px;
+    min-height: 370px;
+
+    &__img {
+      height: 200px;
+      width: 100%;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
   }
 }
 </style>

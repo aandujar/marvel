@@ -120,7 +120,7 @@ export default {
 
 @media (max-width: 490px) {
   .serie-information {
-    min-height: 500px;
+    min-height: 300px;
     width: 260px;
     background-color: $white;
     display: flex;
@@ -128,12 +128,16 @@ export default {
     margin-bottom: 10px;
     box-shadow: 0px 0px 35px -9px $black-shadows;
     border-radius: 20px;
+
+    &__img {
+      height: 200px;
+    }
   }
 }
 
 @media (max-width: 330px) {
   .serie-information {
-    min-height: 500px;
+    min-height: 300px;
     width: 210px;
     background-color: $white;
     display: flex;
@@ -141,12 +145,16 @@ export default {
     margin-bottom: 10px;
     box-shadow: 0px 0px 35px -9px $black-shadows;
     border-radius: 20px;
+
+    &__img {
+      height: 200px;
+    }
   }
 }
 
 @media (max-width: 300px) {
   .serie-information {
-    min-height: 500px;
+    min-height: 300px;
     width: 180px;
     background-color: $white;
     display: flex;
@@ -154,6 +162,10 @@ export default {
     margin-bottom: 10px;
     box-shadow: 0px 0px 35px -9px $black-shadows;
     border-radius: 20px;
+
+    &__img {
+      height: 200px;
+    }
   }
 }
 </style>

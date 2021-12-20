@@ -195,13 +195,12 @@ export default {
     width: 100%;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   .list-card-data {
     position: relative;
     z-index: 10;
-    height: 300px;
-    width: 250px;
-    margin: 20px;
+    height: 200px;
+    width: 200px;
     background-color: $white;
   }
 }

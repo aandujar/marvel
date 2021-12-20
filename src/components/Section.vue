@@ -14,10 +14,9 @@ export default {
   name: "Section",
   props: { section: { type: String, required: true } },
   setup(props) {
-
     const getSection = computed(() => {
       let title = "";
-      switch(props.section) {
+      switch (props.section) {
         case "characters":
           title = "Personajes";
           break;
@@ -33,7 +32,7 @@ export default {
       return title;
     });
 
-    return { getSection }
+    return { getSection };
   },
 };
 </script>
@@ -42,7 +41,7 @@ export default {
 .section {
   height: 300px;
   width: 300px;
-  background-color: white;
+  background-color: $white;
   margin: 20px;
   display: flex;
   flex-direction: column;
@@ -65,6 +64,20 @@ export default {
 
   &__text {
     font-size: 1em;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    height: 200px;
+    width: 200px;
+    margin: 0px;
+
+    &__image {
+      height: 100px;
+      width: 120px;
+      margin-top: 20px;
+    }
   }
 }
 </style>

@@ -253,6 +253,7 @@ export default {
 
           &--bold {
             font-weight: bold;
+            margin-bottom: 10px;
           }
 
           &__icon {
@@ -362,7 +363,7 @@ export default {
         &__comic {
           background-color: white;
           border: 1px solid $black-shadows;
-          height: 300px;
+          min-height: 300px;
           width: 150px;
           z-index: 10;
           position: relative;
@@ -493,23 +494,26 @@ export default {
 
       &__container {
         &__comic {
+          min-height: 330px;
           &__text {
             margin-top: 20px;
+            &--bold {
+              margin-bottom: 30px;
+            }
           }
         }
       }
-
-      &__position {
+    }
+    &__position {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
         width: 100%;
-        margin-top: 60x;
+        margin-top: 60px;
         margin-bottom: 15px;
       }
-    }
   }
 }
 </style>

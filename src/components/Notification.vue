@@ -143,7 +143,7 @@ export default {
   @media (max-width: 900px) {
     @keyframes hide {
       0% {
-        left: 55%;
+        left: 35%;
       }
       50% {
         left: 100%;
@@ -161,7 +161,7 @@ export default {
         left: 100%;
       }
       100% {
-        left: 55%;
+        left: 35%;
       }
     }
   }
